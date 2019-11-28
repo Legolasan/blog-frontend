@@ -13,7 +13,7 @@ export default new Router({
     { path: '/', redirect: { name: 'Home' } },
     { path: '/home', name: 'Home', component: HomeComponent },
     { path: '/create', name: 'Create', component: CreateComponent },
-    { path: '/edit', name: 'Edit', component: EditComponent },
-    { path: '/post', name: 'Post', component: PostComponent }
+    { path: '/edit:id', name: 'Edit', component: EditComponent },
+    { path: '/post:id', name: 'Post', component: PostComponent }
   ]
 })
