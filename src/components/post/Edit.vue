@@ -33,45 +33,44 @@
     </div>
 </template>
 <script>
-import { server } from "../../utils/helper";
-import axios from "axios";
-import router from "../../router";
+import { server } from '../../utils/helper'
+import axios from 'axios'
+import router from '../../router'
 export default {
-  data() {
+  data () {
     return {
       id: 0,
       post: {}
-    };
+    }
   },
-  created() {
-    this.id = this.$route.params.id;
-    this.getPost();
+  created () {
+    this.id = this.$route.params.id
+    this.getPost()
   },
   methods: {
-    editPost() {
+    editPost () {
       let postData = {
         title: this.post.title,
         description: this.post.description,
         body: this.post.body,
         author: this.post.author,
         date_posted: this.post.date_posted
-      };
+      }
 
       axios
         .put(`${server.baseURL}/blog/edit?postID=${this.id}`, postData)
         .then(data => {
-          router.push({ name: "home" });
-        });
+          router.push({ name: 'home' })
+        })
     },
-    getPost() {
+    getPost () {
       axios
         .get(`${server.baseURL}/blog/post/${this.id}`)
-        .then(data => (this.post = data.data));
+        .then(data => (this.post = data.data))
     },
-    navigate() {
-      router.go(-1);
+    navigate () {
+      router.go(-1)
     }
   }
-};
+}
 </script>
-
