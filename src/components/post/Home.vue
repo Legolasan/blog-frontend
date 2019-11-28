@@ -1,6 +1,5 @@
 <template>
     <div>
-
       <div class="text-center">
         <h1>Nest Blog Tutorial</h1>
        <p> This is the description of the blog built with Nest.js, Vue.js and MongoDB</p>
@@ -37,30 +36,30 @@
 </template>
 <script>
 // @ is an alias to /src
-import { server } from "@/utils/helper";
-import axios from "axios";
+import { server } from '@/utils/helper'
+import axios from 'axios'
 
 export default {
-  data() {
+  data () {
     return {
       posts: []
-    };
+    }
   },
-  created() {
-    this.fetchPosts();
+  created () {
+    this.fetchPosts()
   },
   methods: {
-    fetchPosts() {
+    fetchPosts () {
       axios
         .get(`${server.baseURL}/blog/posts`)
-        .then(data => (this.posts = data.data));
+        .then(data => (this.posts = data.data))
     },
-    deletePost(id) {
+    deletePost (id) {
       axios.delete(`${server.baseURL}/blog/delete?postID=${id}`).then(data => {
-        console.log(data);
-        window.location.reload();
-      });
+        console.log(data)
+        window.location.reload()
+      })
     }
   }
-};
+}
 </script>
