@@ -1,7 +1,7 @@
 <template>
    <div>
-        <div class="col-md-12 form-wrapper">
-          <h2> Create Post </h2>
+        <div class="col-md-6 form-wrapper">
+          <h2> Create Post</h2>
           <form id="create-post-form" @submit.prevent="createPost">
                <div class="form-group col-md-12">
                 <label for="title"> Title </label>
@@ -20,46 +20,46 @@
                   <input type="text" id="author" v-model="author" name="author" class="form-control">
               </div>
 
-              <div class="form-group col-md-4 pull-right">
+              <div class="form-group col-md-12 pull-right">
                   <button class="btn btn-success" type="submit"> Create Post </button>
-              </div>          
+              </div>
           </form>
         </div>
     </div>
 </template>
 <script>
-import axios from "axios";
-import { server } from "../../utils/helper";
-import router from "../../router";
+import axios from 'axios'
+import { server } from '../../utils/helper'
+import router from '../../router'
 export default {
-  data() {
+  data () {
     return {
-      title: "",
-      description: "",
-      body: "",
-      author: "",
-      date_posted: ""
-    };
+      title: '',
+      description: '',
+      body: '',
+      author: '',
+      date_posted: ''
+    }
   },
-  created() {
-    this.date_posted = new Date().toLocaleDateString();
+  created () {
+    this.date_posted = new Date().toLocaleDateString()
   },
   methods: {
-    createPost() {
+    createPost () {
       let postData = {
         title: this.title,
         description: this.description,
         body: this.body,
         author: this.author,
         date_posted: this.date_posted
-      };
-      this.__submitToServer(postData);
+      }
+      this.__submitToServer(postData)
     },
-    __submitToServer(data) {
+    __submitToServer (data) {
       axios.post(`${server.baseURL}/blog/post`, data).then(data => {
-        router.push({ name: "home" });
-      });
+        router.push({ name: 'home' })
+      })
     }
   }
-};
+}
 </script>
